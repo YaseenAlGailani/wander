@@ -1,0 +1,106 @@
+// display stuff
+// positioning stuff
+// box model stuff
+// typography stuff
+// mainipulation stuff
+// misc stuff
+
+
+//global styles
+//typography
+//layout
+//components
+
+@use 'components';
+
+/* -------------------
+  custom properties
+------------------- */
+
+:root {
+    --small-padding: 0.5rem;
+    --medium-padding: 1rem;
+    --large-padding: 1.5rem;
+    --xlarge-padding: 2rem;
+    --headings-font: 'Questrial', 'Arial Narrow', Arial, sans-serif;
+    --body-font: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+    --primary-color: #D63D00;
+    --borders-grey: #ededed;
+    --light-background: #f7f7f7;
+    --primary-text: #333;
+    --secondary-text: #555;
+}
+
+/* -------------------
+      Global styles
+------------------- */
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: 1.125rem;
+    font-weight: 300;
+}
+
+p {
+    margin: 0 0 1.5rem 0;
+}
+
+/* -------------------
+      layout
+------------------- */
+
+header {
+    margin: 2rem auto;
+    padding-bottom:2rem;
+    border-bottom:solid 1px var(--borders-grey);
+}
+
+.header__logo {
+    text-align: center;
+}
+
+.section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.section__heading {
+    color: var(--primary-text);
+    font-family: var(--headings-font);
+    font-weight: 400;
+}
+
+.section__heading--sm {
+    font-size: 1.125rem;
+}
+
+.l-list {
+    display: grid;
+    grid-auto-flow:column;
+    gap:1rem;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+/* -------------------
+      Helpers
+------------------- */
+
+.h-sr-only{
+    position: absolute;
+        top: auto;
+        left: -10000px;
+        overflow: hidden;
+        width: 1px;
+        height: 1px;
+        display: inline-block;
+}
