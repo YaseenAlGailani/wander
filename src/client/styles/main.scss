@@ -22,10 +22,11 @@
     --medium-padding: 1rem;
     --large-padding: 1.5rem;
     --xlarge-padding: 2rem;
-    --headings-font: 'Questrial', 'Arial Narrow', Arial, sans-serif;
-    --body-font: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+    --headings-font: 'Questrial', 'Arial', Arial, sans-serif;
+    --body-font: 'Poppins', 'Arial', Arial, sans-serif;
     --primary-color: #D63D00;
     --borders-grey: #ededed;
+    --capsule-grey: #ededed;
     --light-background: #f7f7f7;
     --primary-text: #333;
     --secondary-text: #555;
@@ -43,12 +44,18 @@
 
 body {
     font-family: var(--body-font);
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 300;
+    line-height:1.6;
+    padding:0 var(--small-padding);
 }
 
-p {
-    margin: 0 0 1.5rem 0;
+
+h2, 
+.h2{
+    font-family: var(--headings-font);
+    font-size:2rem;
+    line-height: 1.2;
 }
 
 /* -------------------
@@ -56,8 +63,8 @@ p {
 ------------------- */
 
 header {
-    margin: 2rem auto;
-    padding-bottom:2rem;
+    margin: 1.5rem auto;
+    padding-bottom:1.5rem;
     border-bottom:solid 1px var(--borders-grey);
 }
 

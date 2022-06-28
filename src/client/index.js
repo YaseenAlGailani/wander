@@ -1,10 +1,13 @@
 import './styles/main.scss';
 import './styles/normalize.scss';
+import initCapsules from './js/capsules'
 
 window.addEventListener('DOMContentLoaded', () => {
+    initCapsules();
+
     let $controls_close = document.querySelectorAll('.c-controls__close');
     let $controls_show = document.querySelectorAll('.c-controls__show');
-    let $backdrop = document.querySelectorAll('.c-controls__backdrop');
+
 
     $controls_show.forEach((button) => {
         button.addEventListener('click', function (e) {
@@ -20,17 +23,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 this.classList.add('is-hidden');
             }
         });
+    });
 
+    $controls_close.forEach((button) => {
+        button.addEventListener('click', function (e) {
+            let $controls = this.closest('.c-controls');
+            let $controls_box = $controls.querySelector('.c-controls__box');
+            let $backdrop = $controls.querySelector('.c-controls__backdrop');
 
-        $controls_close.forEach((button) => {
-            button.addEventListener('click', function (e) {
-                let $controls = this.closest('.c-controls');
-                let $controls_box = $controls.querySelector('.c-controls__box');
-                let $backdrop = $controls.querySelector('.c-controls__backdrop');
-
-                $controls_box.classList.remove('is-expanded');
-                $backdrop.classList.add('is-hidden');
-            });
+            $controls_box.classList.remove('is-expanded');
+            $backdrop.classList.add('is-hidden');
         });
     });
+
+
 });

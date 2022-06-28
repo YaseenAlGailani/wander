@@ -20,14 +20,14 @@
     <main>
         <section id="all-trips" class="section">
             <div class="section__header">
-                <h1 class="section__heading section__heading--sm">Trips</h1>
-                <button id="new-trip" class="c-btn c-btn--primary">
-                    <span class="c-btn__icon">
+                <h1 class="section__heading">Trips</h1>
+                <button id="new-trip" class="c-btn c-btn--primary c-btn--icon-only@mobile">
+                    <span class="c-btn__icon c-btn__icon--revolve">
                         <svg data-name="add-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="#fff">
                             <path data-name="Path-1" d="M12,6a1.075,1.075,0,0,1-1,1H7v4a1.075,1.075,0,0,1-1,1,1.075,1.075,0,0,1-1-1V7H1A1.075,1.075,0,0,1,0,6,1.075,1.075,0,0,1,1,5H5V1A1.075,1.075,0,0,1,6,0,1.075,1.075,0,0,1,7,1V5h4A1.075,1.075,0,0,1,12,6Z" />
                         </svg>
                     </span>
-                    <span class="button__text">New trip</span>
+                    <span class="c-btn__text">New trip</span>
                 </button>
             </div>
             <article data-widget="trip" class="c-trip">
@@ -35,8 +35,8 @@
                     <img class="c-trip__image" src="../media/trip-heading-image.png" alt="trip image">
 
                     <div class="c-trip__title">
-                        <div class="c-capsule">
-                            <h2 data-name="trip_title" tabindex="0" data-input-type="text" data-input-label="Trip title" class="c-capsule__h2" aria-description="Click or press Enter to edit your trip title">My trip to Australia</h2>
+                        <div class="c-capsule js-capsule h2">
+                            <h2 data-input-name="trip_title" tabindex="0" data-input-type="text" data-input-label="Trip title" class="c-capsule__view" aria-description="Click or press Enter to edit your trip title">My trip to Australia</h2>
                         </div>
                     </div>
                     <div class="c-trip__info">
@@ -46,8 +46,8 @@
                                     <path d="M6,0C2.6,0,0,3.019,0,6.541a10.53,10.53,0,0,0,3,6.642A19.961,19.961,0,0,0,6,16a19.961,19.961,0,0,0,3-2.818c1.4-1.61,3-4.025,3-6.642C12,3.019,9.3,0,6,0ZM6,9.057A2.294,2.294,0,0,1,4,6.541,2.294,2.294,0,0,1,6,4.025,2.294,2.294,0,0,1,8,6.541,2.294,2.294,0,0,1,6,9.057Z" />
                                 </svg>
                             </span>
-                            <span class="c-capsule">
-                                <p data-name="trip_location" tabindex="0" data-input-type="text" data-input-label="Trip location" class="c-capsule__p" aria-description="Click or press Enter to edit your trip location">Trip location</p>
+                            <span class="c-capsule js-capsule">
+                                <p data-input-name="trip_location" tabindex="0" data-input-type="text" data-input-label="Trip location" class="c-capsule__view" aria-description="Click or press Enter to edit your trip location">Trip location</p>
                             </span>
                         </div>
 
@@ -58,12 +58,12 @@
                                         <path d="M3,4A.945.945,0,0,0,2,5v6a.945.945,0,0,0,1,1H13a.945.945,0,0,0,1-1V5a.945.945,0,0,0-1-1H3M3,1H13a2.946,2.946,0,0,1,3,3v7a2.946,2.946,0,0,1-3,3H3a2.946,2.946,0,0,1-3-3V4A2.946,2.946,0,0,1,3,1ZM4,0H6V2H4Zm.5.5h1v1h-1ZM10,0h2V2H10Zm.5.5h1v1h-1ZM5,5H6A.945.945,0,0,1,7,6V7A.945.945,0,0,1,6,8H5A.945.945,0,0,1,4,7V6A.945.945,0,0,1,5,5Zm0,.5H6a.472.472,0,0,1,.5.5V7a.472.472,0,0,1-.5.5H5A.472.472,0,0,1,4.5,7V6A.472.472,0,0,1,5,5.5Z" />
                                     </svg>
                                 </span>
-                                <span class="c-date__start c-capsule">
-                                    <time>Start date</time>
+                                <span class="c-date__start c-capsule js-capsule">
+                                    <time data-input-name="start_date" tabindex="0" data-input-type="date" data-input-label="Trip start date" class="c-capsule__view" aria-description="Click or press Enter to edit your trip start date">Start date</time>
                                 </span>
                                 <span>&#8212</span>
-                                <span class="c-date__end c-capsule">
-                                    <time>End date</time>
+                                <span class="c-date__end c-capsule js-capsule">
+                                    <time data-input-name="end_date" tabindex="0" data-input-type="date" data-input-label="Trip end date" class="c-capsule__view" aria-description="Click or press Enter to edit your trip end date">End date</time>
                                 </span>
                             </div>
                             <div class="c-date__days">
