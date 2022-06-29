@@ -26,6 +26,8 @@ export default function initDateRange() {
         $end_date.addEventListener('change', handleDateChange);
 
         function handleDateChange(){
+            if ($start_date.value) $end_date.setAttribute('min', $start_date.value);
+            if ($end_date.value) $start_date.setAttribute('max', $end_date.value);
             if (compareDates($start_date.value, $end_date.value)) {
                 let today = new Date().getTime();
                 let days_long = calculateDays($start_date.value, $end_date.value);
