@@ -51,7 +51,7 @@ function handleUserInput(e){
     let $viewElement = $inputElement.closest('[data-block=capsule').querySelector('[data-block=capsule-view]');
 
     if ($inputElement.value) {
-        $viewElement.innerText = $inputElement.value;
+        $viewElement.innerText = $inputElement.type=='date'? parseDate($inputElement.value):$inputElement.value;
         $viewElement.classList.remove('empty');
     } else {
         $viewElement.innerText = $viewElement.dataset.inputLabel;
@@ -75,4 +75,8 @@ function editModeOn(e){
     $inputGroup.classList.remove('h-hidden');
 
     $inputElement.focus();
+}
+
+function parseDate(date){
+    return date.split('-').reverse().join('-');
 }
