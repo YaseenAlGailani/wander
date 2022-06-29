@@ -220,14 +220,13 @@
         margin-bottom: 1rem;
     }
 
-    &__days {
+    &__days-info {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5em;
     }
 
-    &__days-long,
-    &__days-away {
+    &__days {
         background-color: var(--borders-grey);
         border-radius: 10em;
         padding: 0.2em 0.5em;

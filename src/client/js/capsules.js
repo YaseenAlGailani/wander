@@ -1,80 +1,78 @@
+import { v4 as uuid } from 'uuid';
+
 export default function initCapsules() {
 
-    let $viewElements = document.querySelectorAll('.js-capsule [data-input-name]');
+    let $capsules = document.querySelectorAll('[data-block=capsule]');
 
-    $viewElements.forEach(viewElement => {
-        viewElement.addEventListener('click', mountInputElement);
-        viewElement.addEventListener('keydown', (e) => {
+    $capsules.forEach($capsule => {
+        let $viewElement = $capsule.querySelector('[data-block=capsule-view]');
+        
+        $viewElement.addEventListener('click', editModeOn);
+        $viewElement.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
-                mountInputElement(e);
+                editModeOn(e);
             }
         });
-    });
-
-
-    /*
-    LAST THOUGHTS
-        - need to implement a unique scenario for location inputs since they trigger API calls, update DOM and save data to object
-        - need to implement storing data techniques
-    */
-
-    function mountInputElement(e) {
-        let viewElement = e.target;
-        let capsule = viewElement.parentElement;
-        let inputType = viewElement.dataset.inputType;
         
-        let inputGroup = document.createElement("div");
-        let inputLabel = document.createElement("label");
-        let inputElement = document.createElement("input");
+        let inputType = $viewElement.dataset.inputType;
 
         //setup inputElement
-        inputElement.type = inputType;
-        inputElement.id = viewElement.dataset.inputName;
-        inputElement.placeholder = viewElement.dataset.inputLabel;
-        inputElement.classList.add('c-capsule__input');
+        let $inputElement = document.createElement("input");
+        $inputElement.type = inputType;
+        $inputElement.id = $viewElement.dataset.inputName + ':' + uuid();
+        $inputElement.name = $viewElement.dataset.inputName;
+        $inputElement.placeholder = $viewElement.dataset.inputLabel;
+        $inputElement.dataset.block = 'capsule-input';
+        $inputElement.classList.add('c-capsule__input');
 
-        if (viewElement.innerText !== viewElement.dataset.inputLabel) {
-            inputElement.value = viewElement.innerText;
-        }
-
+        $inputElement.addEventListener('blur', handleUserInput);
+        
         //setup inputLabel
-        inputLabel.setAttribute("for", viewElement.dataset.inputName);
-        inputLabel.innerText = viewElement.dataset.inputLabel;
-        inputLabel.classList.add("h-sr-only");
+        let $inputLabel = document.createElement("label");
+        $inputLabel.setAttribute("for", $inputElement.id);
+        $inputLabel.innerText = $viewElement.dataset.inputLabel;
+        $inputLabel.classList.add("h-sr-only");
+        
+        //combine into inputGroup
+        let $inputGroup = document.createElement("div");
+        $inputGroup.dataset.block = 'input-group';
+        $inputGroup.appendChild($inputLabel);
+        $inputGroup.appendChild($inputElement);
 
-        //combine into a group
-        inputGroup.appendChild(inputLabel);
-        inputGroup.appendChild(inputElement);
+        //append $inputGroup to capsule
+        $inputGroup.classList.add('h-hidden');
+        $capsule.appendChild($inputGroup);
+    });
+}
 
-        //handle dismounting input element
-        inputElement.addEventListener("blur", dismountInputElement);
+function handleUserInput(e){
+    let $inputElement = e.target;
+    let $inputGroup = $inputElement.parentElement;
+    let $viewElement = $inputElement.closest('[data-block=capsule').querySelector('[data-block=capsule-view]');
 
-        function dismountInputElement(e) {
-
-            // function to validate inputs
-            // function to parse inputs
-            // function to save data to db
-
-            viewElement.innerText = e.target.value || e.target.placeholder;
-
-            
-            if (e.target.value) {
-                viewElement.innerText = e.target.value;
-                viewElement.classList.remove('empty');
-            } else {
-                viewElement.innerText = viewElement.dataset.inputLabel;
-                viewElement.classList.add('empty');
-            }
-
-            e.target.removeEventListener("blur", dismountInputElement);
-            inputGroup.remove();
-
-            viewElement.style.display = "block";
-            viewElement.focus();
-        }
-
-        viewElement.style.display = "none";
-        capsule.appendChild(inputGroup);
-        inputElement.focus();
+    if ($inputElement.value) {
+        $viewElement.innerText = $inputElement.value;
+        $viewElement.classList.remove('empty');
+    } else {
+        $viewElement.innerText = $viewElement.dataset.inputLabel;
+        $viewElement.classList.add('empty');
     }
+
+    $viewElement.classList.remove('h-hidden');
+    $inputGroup.classList.add('h-hidden');
+}
+
+function editModeOn(e){
+    let $viewElement = e.target;
+    let $inputElement = $viewElement.closest('[data-block=capsule]').querySelector('[data-block=capsule-input]');
+    let $inputGroup = $inputElement.parentElement;
+
+    if ($viewElement.innerText !== $viewElement.dataset.inputLabel) {
+        $inputElement.value = $viewElement.innerText;
+    }
+
+    $viewElement.classList.add('h-hidden');
+    $inputGroup.classList.remove('h-hidden');
+
+    $inputElement.focus();
 }

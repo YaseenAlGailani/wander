@@ -1,9 +1,11 @@
 import './styles/main.scss';
 import './styles/normalize.scss';
 import initCapsules from './js/capsules'
+import initDateRange from './js/date'
 
 window.addEventListener('DOMContentLoaded', () => {
     initCapsules();
+    initDateRange();
 
     let $controls_close = document.querySelectorAll('.c-controls__close');
     let $controls_show = document.querySelectorAll('.c-controls__show');
