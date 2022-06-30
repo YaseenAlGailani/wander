@@ -26,6 +26,11 @@ export default function initCapsules() {
         $inputElement.classList.add('c-capsule__input');
 
         $inputElement.addEventListener('blur', handleUserInput);
+        $inputElement.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                handleUserInput(e);
+            }
+        });
         
         //setup inputLabel
         let $inputLabel = document.createElement("label");
