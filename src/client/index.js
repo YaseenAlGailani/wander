@@ -1,15 +1,16 @@
-import './styles/main.scss';
-import './styles/normalize.scss';
+import './styles/main.scss'
+import './styles/normalize.scss'
 import initCapsules from './js/capsules'
 import initDateRange from './js/date'
+import initLocation from './js/location'
 
 window.addEventListener('DOMContentLoaded', () => {
     initCapsules();
     initDateRange();
+    initLocation();
 
     let $controls_close = document.querySelectorAll('.c-controls__close');
     let $controls_show = document.querySelectorAll('.c-controls__show');
-
 
     $controls_show.forEach((button) => {
         button.addEventListener('click', function (e) {

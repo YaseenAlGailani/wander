@@ -32,11 +32,11 @@
             </div>
             <article data-widget="trip" class="c-trip">
                 <div class="c-trip__heading">
-                    <img class="c-trip__image" src="../media/trip-heading-image.png" alt="trip image">
+                    <img data-block="widget-img" class="c-trip__image" src="../media/placehoder-img.svg" alt="trip image">
 
                     <div class="c-trip__title">
                         <div data-block="capsule" class="c-capsule h2">
-                            <h2 data-block="capsule-view" data-input-name="trip_title" tabindex="0" data-input-type="text" data-input-label="Trip title" class="c-capsule__view" aria-description="Click or press Enter to edit your trip title">My trip to Australia</h2>
+                            <h2 data-block="capsule-view" data-input-name="trip_title" tabindex="0" data-input-type="text" data-input-label="Trip title" class="c-capsule__view" aria-description="Click or press Enter to edit your trip title">Trip title</h2>
                         </div>
                     </div>
                     <div class="c-trip__info">
@@ -47,7 +47,12 @@
                                 </svg>
                             </span>
                             <span data-block="capsule" class="c-capsule">
-                                <p data-block="capsule-view" data-input-name="trip_location" tabindex="0" data-input-type="text" data-input-label="Trip location" class="c-capsule__view" aria-description="Click or press Enter to edit your trip location">Trip location</p>
+                                <p data-block="capsule-view" data-input-name="location" tabindex="0" data-input-type="text" data-input-label="Trip location" class="c-capsule__view" aria-description="Click or press Enter to edit your trip location">Trip location</p>
+                                <div data-block="error" class="c-error h-hidden">
+                                    <p data-block="error-message" class="c-error__message">
+                                        
+                                    </p>
+                                </div>
                             </span>
                         </div>
 

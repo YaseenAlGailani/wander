@@ -17,8 +17,8 @@ export default function initDateRange() {
     let $date_ranges = document.querySelectorAll('[data-block=date-range]');
 
     $date_ranges.forEach($date_range => {
-        let $start_date = $date_range.querySelector('[name=start-date]');
-        let $end_date = $date_range.querySelector('[name=end-date]');
+        let $start_date = $date_range.querySelector('input[name=start-date]');
+        let $end_date = $date_range.querySelector('input[name=end-date]');
         let $days_long = $date_range.querySelector('[data-block=days-long]');
         let $days_away = $date_range.querySelector('[data-block=days-away]');
 
