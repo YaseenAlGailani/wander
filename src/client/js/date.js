@@ -1,18 +1,6 @@
-export default function initDateRange() {
+import tryWeather from "./weather"
 
-    /* 
-    requirements:
-    - start date checks end date on change
-    - end date checks start date on change
-    - if condition is met, calculate days long and days away and display them
-    - if condition fails, display error, and hide days long and days away
-    
-    to do
-    - attach a change event listener on start and end dates
-    - write a function that does the checks
-    - write a function that does the calculation
-    - write a funtion that populates dates data and shows/hides the dates container
-    */
+export default function initDateRange() {
 
     let $date_ranges = document.querySelectorAll('[data-block=date-range]');
 
@@ -26,6 +14,7 @@ export default function initDateRange() {
         $end_date.addEventListener('change', handleDateChange);
 
         function handleDateChange(){
+            
             if ($start_date.value) $end_date.setAttribute('min', $start_date.value);
             if ($end_date.value) $start_date.setAttribute('max', $end_date.value);
             
@@ -37,10 +26,15 @@ export default function initDateRange() {
                 $days_long.innerHTML = `${days_long} days long`;
                 $days_away.innerHTML = days_away < 0 ? `${Math.abs(days_away)} days ago` : `${days_away} days away`;
                 $days_long.parentElement.classList.remove('h-hidden');
+                
+                tryWeather(this.closest('[data-widget]'));
+
             } else{
                 $days_long.parentElement.classList.add('h-hidden');
             }
+
         }
+
 
     })
 

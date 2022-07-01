@@ -1,0 +1,15 @@
+<svg data-name="no-image-found" xmlns="http://www.w3.org/2000/svg" width="350" height="250" viewBox="0 0 350 250">
+  <g transform="translate(-85 -212)">
+    <g transform="translate(85 212)" fill="#fff" stroke="#ededed" stroke-width="1">
+      <rect width="350" height="250" rx="8" stroke="none"/>
+      <rect x="0.5" y="0.5" width="349" height="249" rx="7.5" fill="none"/>
+    </g>
+    <circle cx="44.384" cy="44.384" r="44.384" transform="translate(129 279.683)" fill="#ededed"/>
+    <g transform="translate(136.729 279.683)">
+      <path d="M567.476,362.1H423.306a2.946,2.946,0,0,1-.539-.043l68.186-118.108a4.774,4.774,0,0,1,8.311,0l45.761,79.259L547.217,327Z" transform="translate(-422.767 -241.525)" fill="#c7c7c7"/>
+      <path d="M706.646,382.542H581.95l24.164-35.1,1.739-2.528,31.487-45.74c2.064-3,7.03-3.185,9.457-.565a5.688,5.688,0,0,1,.453.565Z" transform="translate(-481.664 -261.968)" fill="#c7c7c7"/>
+    </g>
+    <path d="M462.022,456.139a20.54,20.54,0,0,0-16.4,8.156,13.524,13.524,0,0,0-18.87,12.42H482.6a20.575,20.575,0,0,0-20.576-20.575Z" transform="translate(-211.921 -155.292)" fill="#ededed"/>
+    <text transform="translate(138 427)" fill="#555" font-size="14" font-family="Poppins-Light, Poppins" font-weight="300"><tspan x="0" y="0">No image found for this location</tspan></text>
+  </g>
+</svg>
