@@ -18,7 +18,6 @@ export default function initCapsules() {
 
         //setup inputElement
         let $inputElement = document.createElement("input");
-        $inputElement.type = inputType;
         $inputElement.id = $viewElement.dataset.inputName + ':' + uuid();
         $inputElement.name = $viewElement.dataset.inputName;
         $inputElement.placeholder = $viewElement.dataset.inputLabel;
@@ -56,7 +55,7 @@ function handleUserInput(e){
     let $viewElement = $inputElement.closest('[data-block=capsule').querySelector('[data-block=capsule-view]');
 
     if ($inputElement.value) {
-        $viewElement.innerText = $inputElement.type=='date'? parseDate($inputElement.value):$inputElement.value;
+        $viewElement.innerText = $inputElement.value;
         $viewElement.classList.remove('empty');
     } else {
         $viewElement.innerText = $viewElement.dataset.inputLabel;
@@ -65,6 +64,11 @@ function handleUserInput(e){
 
     $viewElement.classList.remove('h-hidden');
     $inputGroup.classList.add('h-hidden');
+
+    if ($viewElement.dataset.inputType === 'date') {
+        $inputElement.removeAttribute('readonly');
+    }
+
 }
 
 function editModeOn(e){
@@ -76,12 +80,12 @@ function editModeOn(e){
         $inputElement.value = $viewElement.innerText;
     }
 
+    if($viewElement.dataset.inputType === 'date'){
+        $inputElement.setAttribute('readonly', 'readonly');
+    }
+
     $viewElement.classList.add('h-hidden');
     $inputGroup.classList.remove('h-hidden');
 
     $inputElement.focus();
-}
-
-function parseDate(date){
-    return date.split('-').reverse().join('-');
 }

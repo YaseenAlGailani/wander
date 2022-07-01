@@ -22,18 +22,18 @@
         grid-area: info;
     }
 
-    &__location,
-    &__dates {
+    &__location{
         display: flex;
         align-items: center;
         flex-wrap: wrap;
         margin-bottom: 0.5rem;
     }
 
+
     &__image {
         grid-area: image;
         max-width: 100%;
-        width:350px;
+        width: 350px;
         height: auto;
         border-radius: 8px;
     }
@@ -185,6 +185,7 @@
         &[type=date] {
             max-height: calc(1em + 1rem);
         }
+
         &:focus {
             border: none;
             outline: none;
@@ -201,10 +202,10 @@
         padding: var(--small-padding);
         border-radius: 8px;
 
-        &:hover, 
+        &:hover,
         &:focus {
             background-color: var(--capsule-grey);
-            outline:none;
+            outline: none;
         }
     }
 }
@@ -217,6 +218,12 @@
         display: flex;
         align-items: center;
         margin-bottom: 1rem;
+
+    }
+    
+    &__input{
+        display:block;
+        max-width:6.5em;
     }
 
     &__days-info {
