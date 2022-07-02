@@ -18,15 +18,14 @@ app.use(cors({
 app.use(express.static(path.resolve('dist')))
 app.use(express.static(path.join(__dirname, '../public')))
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.sendFile(path.resolve('dist/index.html'))
 })
 
 
-app.get('/api/images', function (req, res) {
+app.get('/api/images', (req, res) => {
     axios.get(`https://pixabay.com/api/?key=${process.env.IMG_KEY}&q=${req.query.loc}&image_type=photo&safesearch=true`)
         .then(response => {
-            console.log(response.data);
             if (response.data.total == 0) {
                 res.status(404).send('We couldn\'t find a photo for this location');
             } else {
@@ -37,18 +36,17 @@ app.get('/api/images', function (req, res) {
         })
 })
 
-app.get('/api/coord', function (req, res) {
+app.get('/api/coord', (req, res) => {
     axios.get(`http://api.geonames.org/searchJSON?q=${req.query.loc}&maxRows=10&username=${process.env.GEO_KEY}`)
         .then(response => {
             if (response.data.totalResultsCount == 0) {
-                res.status(404).send({status:404, message: 'We couldn\'t find this location'});
+                res.status(404).send({ status: 404, message: 'We couldn\'t find this location' });
             } else {
                 let data = {
-                    status : 200,
-                    lat : response.data.geonames[0].lat,
-                    lon : response.data.geonames[0].lng
+                    status: 200,
+                    lat: response.data.geonames[0].lat,
+                    lon: response.data.geonames[0].lng
                 };
-                console.log(data);
                 res.send(data);
             }
         }).catch(error => {
@@ -56,6 +54,24 @@ app.get('/api/coord', function (req, res) {
         })
 })
 
-app.listen(port, function () {
+app.get('/api/weather/current', (req, res) => {
+    axios.get(`https://api.weatherbit.io/v2.0/current?lat=${req.query.lat}&lon=${req.query.lon}&key=${process.env.WEATHER_KEY}`)
+        .then(resp => {
+            res.send(resp.data);
+        }).catch(error=>{
+            console.log(error)
+        })
+})
+
+app.get('/api/weather/forecast', (req, res) => {
+    axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${req.query.lat}&lon=${req.query.lon}&key=${process.env.WEATHER_KEY}`)
+        .then(resp => {
+            res.send(resp.data);
+        }).catch(error=>{
+            console.log(error)
+        })
+})
+
+app.listen(port, () => {
     console.log(`Server is listening on port ${port}`)
 })

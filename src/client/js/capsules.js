@@ -65,10 +65,6 @@ function handleUserInput(e){
     $viewElement.classList.remove('h-hidden');
     $inputGroup.classList.add('h-hidden');
 
-    if ($viewElement.dataset.inputType === 'date') {
-        $inputElement.removeAttribute('readonly');
-    }
-
 }
 
 function editModeOn(e){
@@ -78,10 +74,6 @@ function editModeOn(e){
 
     if ($viewElement.innerText !== $viewElement.dataset.inputLabel) {
         $inputElement.value = $viewElement.innerText;
-    }
-
-    if($viewElement.dataset.inputType === 'date'){
-        $inputElement.setAttribute('readonly', 'readonly');
     }
 
     $viewElement.classList.add('h-hidden');

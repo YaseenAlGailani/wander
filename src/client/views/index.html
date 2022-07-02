@@ -31,11 +31,11 @@
                 </button>
             </div>
             <article data-widget="trip" class="c-trip">
-                <div class="c-trip__heading">
+                <section class="c-trip__header">
                     <img data-block="widget-img" class="c-trip__image" src="../media/placehoder-img.svg" alt="trip image">
 
                     <div class="c-trip__title">
-                        <div data-block="capsule" class="c-capsule h2">
+                        <div data-block="capsule" class="c-capsule c-trip__heading">
                             <h2 data-block="capsule-view" data-input-name="trip_title" tabindex="0" data-input-type="text" data-input-label="Trip title" class="c-capsule__view" aria-description="Click or press Enter to edit your trip title">Trip title</h2>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                                 <p data-block="capsule-view" data-input-name="location" tabindex="0" data-input-type="text" data-input-label="Trip location" class="c-capsule__view" aria-description="Click or press Enter to edit your trip location">Trip location</p>
                                 <div data-block="error" class="c-error h-hidden">
                                     <p data-block="error-message" class="c-error__message">
-                                        
+
                                     </p>
                                 </div>
                             </span>
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div class="c-trip__controls">
-                        <div class="c-controls">
+                        <div class="c-controls c-controls--modal@mobile">
                             <div class="c-controls__box">
                                 <ul class="c-controls__list">
                                     <li class="c-controls__item">
@@ -144,6 +144,48 @@
                             </button>
                         </div>
                     </div>
+                </section>
+                <div class="c-trip__body">
+                    <div class="c-trip__details">
+                        <article data-widget="weather" class="c-widget h-hidden">
+                            <div class="c-widget__header">
+                                <h3 class="c-widget__heading">Weather</h3>
+                                <div class="c-widget__controls">
+                                    <div class="c-controls">
+                                        <button class="c-controls__btn c-controls__btn--round c-controls__btn--sm">
+                                            <span class="c-controls__icon">
+                                                <svg data-name="ec-ico" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="#333">
+                                                    <path d="M.3,7.7h0a.967.967,0,0,1,0-1.4l6-6A.967.967,0,0,1,7.7.3l6,6a.967.967,0,0,1,0,1.4h0a.967.967,0,0,1-1.4,0L7.7,3.2a.967.967,0,0,0-1.4,0L1.7,7.7A.967.967,0,0,1,.3,7.7Z" />
+                                                </svg>
+                                            </span>
+                                            <span class="c-controls__text">
+                                                Toggle trip
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="c-widget__body">
+                                <section data-block="current-weather" class="c-current-weather">
+                                    <div class="c-current-weather__heading">
+                                        <h4 class="c-widget__sub-heading">Weather today</h4>
+                                    </div>
+                                    <div class="c-current-weather__body">
+                                        <img data-block="current-w-icon" class="c-current-weather__icon" src="#" alt="">
+                                        <div class="c-current-weather__details">
+                                            <span data-block="current-desc" class="c-current-weather__desc"></span>
+                                            <div class="c-current-weather__temp">
+                                                <span data-block="current-temp"></span><span>&deg;c</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section data-block="forecast-weather" class="c-forecast-weather">
+                                </section>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="c-trip__destinations"></div>
                 </div>
             </article>
         </section>

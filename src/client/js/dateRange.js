@@ -1,6 +1,7 @@
 import tryWeather from "./weather"
 import { DateRangePicker } from 'vanillajs-datepicker';
 import '../../../node_modules/vanillajs-datepicker/sass/datepicker.scss'
+import * as utils from './date_utils'
 
 export default function initDateRange() {
 
@@ -20,6 +21,8 @@ export default function initDateRange() {
 
         $start_date.addEventListener('changeDate', handleDateChange);
         $end_date.addEventListener('changeDate', handleDateChange);
+        
+        //stop mobile keyboard from popping up
         $start_date.setAttribute('inputmode', 'none');
         $end_date.setAttribute('inputmode', 'none');
         $start_date.classList.add('c-date__input');
@@ -30,10 +33,10 @@ export default function initDateRange() {
 
             $viewElement.innerText = this.value;
 
-            if (compareDates($start_date.value, $end_date.value)) {
+            if (utils.compareDates($start_date.value, $end_date.value)) {
                 let today = new Date().getTime();
-                let days_long = calculateDays($start_date.value, $end_date.value);
-                let days_away = calculateDays(today, $start_date.value);
+                let days_long = utils.calculateDays($start_date.value, $end_date.value);
+                let days_away = utils.calculateDays(today, $start_date.value);
 
                 $days_long.innerHTML = `${days_long} days long`;
                 $days_away.innerHTML = days_away < 0 ? `${Math.abs(days_away)} days ago` : `${days_away} days away`;
@@ -44,24 +47,7 @@ export default function initDateRange() {
             } else {
                 $days_long.parentElement.classList.add('h-hidden');
             }
-
         }
-
-
     })
 }
 
-function compareDates(start, end) {
-    let date_start = new Date(start).getTime();
-    let date_end = new Date(end).getTime();
-
-    return date_start <= date_end;
-}
-
-function calculateDays(start, end) {
-    let date_start = new Date(start).getTime();
-    let date_end = new Date(end).getTime();
-    let dayInMs = 24 * 60 * 60 * 1000;
-
-    return Math.round((date_end - date_start) / dayInMs);
-}

@@ -15,7 +15,7 @@ export default async function imgFetcher(location, $img) {
         $img.setAttribute('src', await resp.text())
     }
     catch (error) {
-        console.error('[image] ', error)
+        console.error(new Error(error));
     }
 
 }
