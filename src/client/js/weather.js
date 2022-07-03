@@ -1,11 +1,11 @@
 import * as date from './date_utils'
 import getCoordinates from './coordinates'
 
-export default async function tryWeather($parent_widget) {
-    let $location = $parent_widget.querySelector('input[name=location]');
-    let $start_date = $parent_widget.querySelector('input[name=start-date]');
-    let $end_date = $parent_widget.querySelector('input[name=end-date]');
-    let $widget = $parent_widget.querySelector('[data-widget=weather]');
+export default async function tryWeather($parent_realm) {
+    let $location = $parent_realm.querySelector('input[name=location]');
+    let $start_date = $parent_realm.querySelector('input[name=start_date]');
+    let $end_date = $parent_realm.querySelector('input[name=end_date]');
+    let $widget = $parent_realm.querySelector('[data-widget=weather]');
 
     if ($location.value !== '' && $start_date.value !== '' && $end_date.value !== '') {
         let coord = await getCoordinates($location.value);
@@ -22,7 +22,7 @@ export default async function tryWeather($parent_widget) {
         } else if (days_to_start < 16) {
 
             let current_weather = await getCurrentWeather(coord.lat, coord.lon);
-            injectCurrentWeather($parent_widget, current_weather);
+            injectCurrentWeather($parent_realm, current_weather);
             let forecast_weather = await getForecastWeather(coord.lat, coord.lon);
             let forecast_array = []
 
@@ -40,7 +40,7 @@ export default async function tryWeather($parent_widget) {
                     forecast_array = forecast_weather.data.slice(2, days_to_end + 2);
                 }
             }
-            injectForecastWeather($parent_widget, forecast_array);
+            injectForecastWeather($parent_realm, forecast_array);
         }
 
     }
@@ -80,24 +80,24 @@ function injectForecastWeather($widget, forecast_array) {
     forecast_array.forEach(item => {
 
         let li = document.createElement('li');
+        li.classList.add('c-forecast-weather__item')
         li.innerHTML =
-            `<li class="c-forecast-weather__item">
-            <div class="c-forecast-weather__title">
-                <span class="c-forecast-weather__day">${date.getDayName(item.valid_date)}</span>
-                <span class="c-forecast-weather__date">${item.valid_date}</span>
+        `
+        <div class="c-forecast-weather__title">
+            <span class="c-forecast-weather__day">${date.getDayName(item.valid_date)}</span>
+            <span class="c-forecast-weather__date">${item.valid_date}</span>
+        </div>
+        <div class="c-forecast-weather__weather">
+            <img class="c-forecast-weather__icon" src="http://localhost:3000/images/weather-icons/${item.weather.icon}.png" alt="${item.weather.description}">
+            <span class="c-forecast-weather__desc">${item.weather.description}</span>
+        </div>
+        <div class="c-forecast-weather__temps">
+            <span class="c-forecast-weather__temp">${item.temp}&deg;c</span>
+            <div class="c-forecast-weather__ranges">
+                <span class="c-forecast-weather__point">L:${item.min_temp}&deg;</span>
+                <span class="c-forecast-weather__point">H:${item.max_temp}&deg;</span>
             </div>
-            <div class="c-forecast-weather__weather">
-                <img class="c-forecast-weather__icon" src="http://localhost:3000/images/weather-icons/${item.weather.icon}.png" alt="${item.weather.description}">
-                <span class="c-forecast-weather__desc">${item.weather.description}</span>
-            </div>
-            <div class="c-forecast-weather__temps">
-                <span class="c-forecast-weather__temp">${item.temp}&deg;c</span>
-                <div class="c-forecast-weather__ranges">
-                    <span class="c-forecast-weather__point">L:${item.min_temp}&deg;</span>
-                    <span class="c-forecast-weather__point">H:${item.max_temp}&deg;</span>
-                </div>
-            </div>
-        </li>
+        </div>
         `
         forecast_List.appendChild(li)
     });

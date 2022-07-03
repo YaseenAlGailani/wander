@@ -1,13 +1,14 @@
-export default function initControls(){
-    let $controls_close = document.querySelectorAll('.c-controls__close');
-    let $controls_show = document.querySelectorAll('.c-controls__show');
+export default function initControls($parent_realm) {
+    let $controls_close = $parent_realm.querySelectorAll('[data-controls=close]');
+    let $controls_show = $parent_realm.querySelectorAll('[data-controls=show]');
+    let $controls_toggle = $parent_realm.querySelectorAll('[data-controls=toggle]');
 
     $controls_show.forEach((button) => {
-        button.addEventListener('click', function (e) {
-            let $controls = this.closest('.c-controls');
-            let $controls_box = $controls.querySelector('.c-controls__box');
-            let $backdrop = $controls.querySelector('.c-controls__backdrop');
+        let $controls = button.closest('[data-block=controls]');
+        let $controls_box = $controls.querySelector('[data-block=controls-box]');
+        let $backdrop = $controls.querySelector('[data-block=controls-backdrop]');
 
+        button.addEventListener('click', () => {
             $controls_box.classList.add('is-expanded');
             $backdrop.classList.remove('is-hidden');
 
@@ -19,13 +20,24 @@ export default function initControls(){
     });
 
     $controls_close.forEach((button) => {
-        button.addEventListener('click', function (e) {
-            let $controls = this.closest('.c-controls');
-            let $controls_box = $controls.querySelector('.c-controls__box');
-            let $backdrop = $controls.querySelector('.c-controls__backdrop');
+        let $controls = button.closest('[data-block=controls]');
+        let $controls_box = $controls.querySelector('[data-block=controls-box]');
+        let $backdrop = $controls.querySelector('[data-block=controls-backdrop]');
+
+        button.addEventListener('click', () => {
 
             $controls_box.classList.remove('is-expanded');
             $backdrop.classList.add('is-hidden');
+        });
+    });
+
+    $controls_toggle.forEach((button) => {
+        let $toggle_parent = button.closest('[data-control=parent');
+        let $toggle_target = $toggle_parent.querySelector('[data-control=target');
+
+        button.addEventListener('click', () => {
+            $toggle_target.classList.toggle('h-collapsed');
+            button.classList.toggle('c-controls__btn--rotated');
         });
     });
 }

@@ -51,8 +51,9 @@
 }
 
 body {
+    position:relative;
     font-family: var(--body-font);
-    font-size: var(--medium-font);
+    font-size: var(--small-font);
     font-weight: 300;
     line-height: 1.6;
     padding: 0 var(--small-spacing);
@@ -67,6 +68,11 @@ header {
     margin: 1.5rem auto;
     padding-bottom: 1.5rem;
     border-bottom: solid 1px var(--borders-grey);
+}
+
+main{
+    max-width: 1326px;
+    margin:0 auto;
 }
 
 .header__logo {
@@ -84,6 +90,7 @@ header {
     color: var(--dark-grey);
     font-family: var(--headings-font);
     font-weight: 400;
+    margin:0;
 }
 
 .section__heading--sm {
@@ -121,4 +128,9 @@ header {
     color: var(--light-grey);
     font-weight: 300;
     // font-size: var(--small-font);
+}
+
+.h-collapsed{
+    height: 0;
+    overflow: hidden;
 }

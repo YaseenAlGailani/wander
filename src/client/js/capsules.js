@@ -1,13 +1,14 @@
 import { v4 as uuid } from 'uuid'
+import saveData from './saveData';
 
-export default function initCapsules() {
+export default function initCapsules($parent_realm) {
 
-    let $capsules = document.querySelectorAll('[data-block=capsule]');
+    let $capsules = $parent_realm.querySelectorAll('[data-block=capsule]');
 
     $capsules.forEach($capsule => {
         let $viewElement = $capsule.querySelector('[data-block=capsule-view]');
         $viewElement.innerText = $viewElement.dataset.placeholder;
-        
+
         $viewElement.addEventListener('click', editModeOn);
         $viewElement.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
@@ -24,18 +25,14 @@ export default function initCapsules() {
         $inputElement.classList.add('c-capsule__input');
 
         $inputElement.addEventListener('blur', handleUserInput);
-        $inputElement.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                handleUserInput(e);
-            }
-        });
-        
+
+
         //setup inputLabel
         let $inputLabel = document.createElement("label");
         $inputLabel.setAttribute("for", $inputElement.id);
         $inputLabel.innerText = $viewElement.dataset.inputLabel;
         $inputLabel.classList.add("h-sr-only");
-        
+
         //combine into inputGroup
         let $inputGroup = document.createElement("div");
         $inputGroup.dataset.block = 'input-group';
@@ -48,15 +45,26 @@ export default function initCapsules() {
     });
 }
 
-function handleUserInput(e){
+function handleUserInput(e) {
     let $inputElement = e.target;
     let $inputGroup = $inputElement.parentElement;
     let $viewElement = $inputElement.closest('[data-block=capsule').querySelector('[data-block=capsule-view]');
 
     if ($inputElement.value) {
+
+        if ($viewElement.innerText !== $inputElement.value) {
+            saveData(e.target);
+            console.log('saving data!');
+        }
+
         $viewElement.innerText = $inputElement.value;
         $viewElement.classList.remove('h-empty');
     } else {
+
+        if ($viewElement.innerText !== $viewElement.dataset.placeholder) {
+            console.log('removing data!');
+        }
+
         $viewElement.innerText = $viewElement.dataset.placeholder;
         $viewElement.classList.add('h-empty');
     }
@@ -64,9 +72,10 @@ function handleUserInput(e){
     $viewElement.classList.remove('h-hidden');
     $inputGroup.classList.add('h-hidden');
 
+
 }
 
-function editModeOn(e){
+function editModeOn(e) {
     let $viewElement = e.target;
     let $inputElement = $viewElement.closest('[data-block=capsule]').querySelector('[data-block=capsule-input]');
     let $inputGroup = $inputElement.parentElement;
@@ -80,3 +89,4 @@ function editModeOn(e){
 
     $inputElement.focus();
 }
+
