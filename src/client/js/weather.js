@@ -14,9 +14,10 @@ export default async function tryWeather($parent_widget) {
         let days_to_start = date.calculateDays(today, $start_date.value);
         let days_to_end = date.calculateDays(today, $end_date.value);
 
-        if (days_to_start > 16 && days_to_end < 0) {
+        if (days_to_start > 16 || days_to_end < 0) {
 
             $widget.classList.add('h-hidden');
+
 
         } else if (days_to_start < 16) {
 
@@ -26,17 +27,17 @@ export default async function tryWeather($parent_widget) {
             let forecast_array = []
 
             $widget.classList.remove('h-hidden');
-            if (days_to_start >= 0) {
+            if (days_to_start > 0) {
                 if (days_to_end >= 7) {
-                    forecast_array = forecast_weather.data.slice(days_to_start +1 , days_to_start + 8);
+                    forecast_array = forecast_weather.data.slice(days_to_start + 1, days_to_start + 8);
                 } else {
-                    forecast_array = forecast_weather.data.slice(days_to_start + 1, days_to_end) + 1;
+                    forecast_array = forecast_weather.data.slice(days_to_start + 1, days_to_end +2 );
                 }
             } else {
                 if (days_to_end >= 7) {
-                    forecast_array = forecast_weather.data.slice(1, 8);
+                    forecast_array = forecast_weather.data.slice(2, 9);
                 } else {
-                    forecast_array = forecast_weather.data.slice(1, days_to_end + 1);
+                    forecast_array = forecast_weather.data.slice(2, days_to_end + 2);
                 }
             }
             injectForecastWeather($parent_widget, forecast_array);
@@ -75,14 +76,14 @@ async function getForecastWeather(lat, lon) {
 function injectForecastWeather($widget, forecast_array) {
     let forecast_List = document.createElement('ul');
     forecast_List.classList.add('c-forecast-weather__list');
-    console.log(forecast_array);
+
     forecast_array.forEach(item => {
 
         let li = document.createElement('li');
         li.innerHTML =
             `<li class="c-forecast-weather__item">
             <div class="c-forecast-weather__title">
-                <span class="c-forecast-weather__day">${getDayName(item.valid_date)}</span>
+                <span class="c-forecast-weather__day">${date.getDayName(item.valid_date)}</span>
                 <span class="c-forecast-weather__date">${item.valid_date}</span>
             </div>
             <div class="c-forecast-weather__weather">
@@ -103,8 +104,4 @@ function injectForecastWeather($widget, forecast_array) {
 
     $widget.querySelector('[data-block=forecast-weather').innerHTML = '';
     $widget.querySelector('[data-block=forecast-weather').appendChild(forecast_List);
-}
-
-function getDayName(date) {
-    return new Date(date).toLocaleDateString('en-GB', { weekday: 'long' });
 }

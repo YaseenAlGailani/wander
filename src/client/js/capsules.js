@@ -6,6 +6,7 @@ export default function initCapsules() {
 
     $capsules.forEach($capsule => {
         let $viewElement = $capsule.querySelector('[data-block=capsule-view]');
+        $viewElement.innerText = $viewElement.dataset.placeholder;
         
         $viewElement.addEventListener('click', editModeOn);
         $viewElement.addEventListener('keydown', (e) => {
@@ -13,14 +14,12 @@ export default function initCapsules() {
                 editModeOn(e);
             }
         });
-        
-        let inputType = $viewElement.dataset.inputType;
 
         //setup inputElement
         let $inputElement = document.createElement("input");
         $inputElement.id = $viewElement.dataset.inputName + ':' + uuid();
         $inputElement.name = $viewElement.dataset.inputName;
-        $inputElement.placeholder = $viewElement.dataset.inputLabel;
+        $inputElement.placeholder = $viewElement.dataset.placeholder;
         $inputElement.dataset.block = 'capsule-input';
         $inputElement.classList.add('c-capsule__input');
 
@@ -56,10 +55,10 @@ function handleUserInput(e){
 
     if ($inputElement.value) {
         $viewElement.innerText = $inputElement.value;
-        $viewElement.classList.remove('empty');
+        $viewElement.classList.remove('h-empty');
     } else {
-        $viewElement.innerText = $viewElement.dataset.inputLabel;
-        $viewElement.classList.add('empty');
+        $viewElement.innerText = $viewElement.dataset.placeholder;
+        $viewElement.classList.add('h-empty');
     }
 
     $viewElement.classList.remove('h-hidden');
@@ -72,7 +71,7 @@ function editModeOn(e){
     let $inputElement = $viewElement.closest('[data-block=capsule]').querySelector('[data-block=capsule-input]');
     let $inputGroup = $inputElement.parentElement;
 
-    if ($viewElement.innerText !== $viewElement.dataset.inputLabel) {
+    if ($viewElement.innerText !== $viewElement.dataset.placeholder) {
         $inputElement.value = $viewElement.innerText;
     }
 

@@ -13,7 +13,12 @@ function calculateDays(start, end) {
     return Math.round((date_end - date_start) / dayInMs);
 }
 
+function getDayName(date) {
+    return new Date(date).toLocaleDateString('en-GB', { weekday: 'long' });
+}
+
 export {
     compareDates, 
-    calculateDays
+    calculateDays,
+    getDayName
 }

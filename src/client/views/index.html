@@ -36,7 +36,7 @@
 
                     <div class="c-trip__title">
                         <div data-block="capsule" class="c-capsule c-trip__heading">
-                            <h2 data-block="capsule-view" data-input-name="trip_title" tabindex="0" data-input-type="text" data-input-label="Trip title" class="c-capsule__view" aria-description="Click or press Enter to edit your trip title">Trip title</h2>
+                            <h2 data-block="capsule-view" data-input-name="trip_title" tabindex="0" data-input-label="Trip title" data-placeholder="Trip title" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></h2>
                         </div>
                     </div>
                     <div class="c-trip__info">
@@ -47,7 +47,7 @@
                                 </svg>
                             </span>
                             <span data-block="capsule" class="c-capsule">
-                                <p data-block="capsule-view" data-input-name="location" tabindex="0" data-input-type="text" data-input-label="Trip location" class="c-capsule__view" aria-description="Click or press Enter to edit your trip location">Trip location</p>
+                                <p data-block="capsule-view" data-input-name="location" tabindex="0" data-input-label="Trip location" data-placeholder="Trip location" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></p>
                                 <div data-block="error" class="c-error h-hidden">
                                     <p data-block="error-message" class="c-error__message">
 
@@ -64,11 +64,11 @@
                                     </svg>
                                 </span>
                                 <span data-block="capsule" class="c-date__start c-capsule">
-                                    <time data-block="capsule-view" data-input-name="start-date" tabindex="0" data-input-type="date" data-input-label="Trip start date" class="c-capsule__view" aria-description="Click or press Enter to edit your trip start date">Start date</time>
+                                    <time data-block="capsule-view" data-input-name="start-date" tabindex="0" data-input-label="Trip start date" data-placeholder="Start date" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></time>
                                 </span>
                                 <span>&#8212</span>
                                 <span data-block="capsule" class="c-date__end c-capsule">
-                                    <time data-block="capsule-view" data-input-name="end-date" tabindex="0" data-input-type="date" data-input-label="Trip end date" class="c-capsule__view" aria-description="Click or press Enter to edit your trip end date">End date</time>
+                                    <time data-block="capsule-view" data-input-name="end-date" tabindex="0" data-input-label="Trip end date" data-placeholder="End date" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></time>
                                 </span>
                             </div>
                             <div class="c-date__days-info h-hidden">
@@ -181,6 +181,93 @@
                                     </div>
                                 </section>
                                 <section data-block="forecast-weather" class="c-forecast-weather">
+                                </section>
+                            </div>
+                        </article>
+                        <article data-widget="trave-details" class="c-widget">
+                            <div class="c-widget__header">
+                                <h3 class="c-widget__heading">Travel details</h3>
+                                <div class="c-widget__controls">
+                                    <div class="c-controls">
+                                        <button class="c-controls__btn c-controls__btn--round c-controls__btn--sm">
+                                            <span class="c-controls__icon">
+                                                <svg data-name="ec-ico" xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="#333">
+                                                    <path d="M.3,7.7h0a.967.967,0,0,1,0-1.4l6-6A.967.967,0,0,1,7.7.3l6,6a.967.967,0,0,1,0,1.4h0a.967.967,0,0,1-1.4,0L7.7,3.2a.967.967,0,0,0-1.4,0L1.7,7.7A.967.967,0,0,1,.3,7.7Z" />
+                                                </svg>
+                                            </span>
+                                            <span class="c-controls__text">
+                                                Toggle trip
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="c-widget__body c-travel-details">
+                                <section class="c-travel-details__dep">
+                                    <h4 class="c-widget__sub-heading">Departure</h4>
+                                    <ul class="c-travel-details__list">
+                                        <li class="c-travel-details__item">
+                                            <span class="c-travel-details__label">Flight:</span>
+                                            <span data-block="capsule" class="c-capsule">
+                                                <span data-block="capsule-view" data-input-name="flight-num" tabindex="0" data-input-label="flight number" data-placeholder="number" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit">flight number</span>
+                                            </span>
+                                        </li>
+                                        <li class="c-travel-details__item">
+                                            <span class="c-travel-details__label">Dep:</span>
+                                            <div>
+                                                <span data-block="capsule" data-input-type="time" class="c-capsule c-date--time c-travel-details__input">
+                                                    <span data-block="capsule-view" data-input-name="arrive-time" tabindex="0" data-input-label="arrival time" data-placeholder="HH:MM" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></span>
+                                                </span>
+                                                <span data-block="capsule" data-input-type="datepicker" class="c-capsule c-date c-travel-details__input">
+                                                    <span data-block="capsule-view" data-input-name="depart-date" tabindex="0" data-input-label="depatrure date" data-placeholder="date" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li class="c-travel-details__item">
+                                            <span class="c-travel-details__label">Arr:</span>
+                                            <div>    
+                                                <span data-block="capsule" data-input-type="time" class="c-capsule c-date--time c-travel-details__input">
+                                                    <span data-block="capsule-view" data-input-name="arrive-time" tabindex="0" data-input-label="arrival time" data-placeholder="HH:MM" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></span>
+                                                </span>
+                                                <span data-block="capsule" data-input-type="datepicker" class="c-capsule c-date c-travel-details__input">
+                                                    <span data-block="capsule-view" data-input-name="arrive-date" tabindex="0" data-input-label="arrival date" data-placeholder="date" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </section>
+                                <section class="c-travel-details__ret">
+                                    <h4 class="c-widget__sub-heading">Return</h4>
+                                    <ul class="c-travel-details__list">
+                                        <li class="c-travel-details__item">
+                                            <span class="c-travel-details__label">Flight:</span>
+                                            <span data-block="capsule" class="c-capsule">
+                                                <span data-block="capsule-view" data-input-name="flight-num" tabindex="0" data-input-label="flight number" data-placeholder="number" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit">flight number</span>
+                                            </span>
+                                        </li>
+                                        <li class="c-travel-details__item">
+                                            <span class="c-travel-details__label">Dep:</span>
+                                            <div>
+                                                <span data-block="capsule" data-input-type="time" class="c-capsule c-date--time c-travel-details__input">
+                                                    <span data-block="capsule-view" data-input-name="arrive-time" tabindex="0" data-input-label="arrival time" data-placeholder="HH:MM" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></span>
+                                                </span>
+                                                <span data-block="capsule" data-input-type="datepicker" class="c-capsule c-date c-travel-details__input">
+                                                    <span data-block="capsule-view" data-input-name="depart-date" tabindex="0" data-input-label="depatrure date" data-placeholder="date" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li class="c-travel-details__item">
+                                            <span class="c-travel-details__label">Arr:</span>
+                                            <div>
+                                                <span data-block="capsule" data-input-type="time" class="c-capsule c-date--time c-travel-details__input">
+                                                    <span data-block="capsule-view" data-input-name="arrive-time" tabindex="0" data-input-label="arrival time" data-placeholder="HH:MM" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></span>
+                                                </span>
+                                                <span data-block="capsule" data-input-type="datepicker" class="c-capsule c-date c-travel-details__input">
+                                                    <span data-block="capsule-view" data-input-name="arrive-date" tabindex="0" data-input-label="arrival date" data-placeholder="date" class="c-capsule__view h-empty" aria-description="Click or press Enter to edit"></span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </section>
                             </div>
                         </article>
