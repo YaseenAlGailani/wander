@@ -88,10 +88,11 @@ function handleTimeInput(e) {
     if (allowed_keys.indexOf(e.key) >= 0 || Number(e.key) >= 0) {
         if (this.value.length == 0 && e.key > 2) {
             e.preventDefault();
-        } else if (this.value.length == 1 && e.key > 9) {
+        } else if (this.value.length == 1 && e.key > 3 && this.value[0] >=2  ) {
             e.preventDefault();
-        } else if (this.value.length === 2 && Number(e.key) >= 0) {
+        } else if (this.value.length == 2 && Number(e.key) >= 0) {
             this.value = this.value + ':';
+            e.preventDefault();
         } else if (this.value.length == 3 && e.key > 5) {
             e.preventDefault();
         }
