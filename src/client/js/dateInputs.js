@@ -11,8 +11,7 @@ function initDateRange($parent_realm) {
     $date_ranges.forEach($date_range => {
 
         const rangepicker = new DateRangePicker($date_range, {
-            allowOneSidedRange: true,
-            format: 'mm.dd.yyyy'
+            allowOneSidedRange: true
         });
 
         let $start_date = $date_range.querySelector('input[name=start_date]');
@@ -64,9 +63,7 @@ function initDatepicker($parent_realm) {
     let $datepickers = $parent_realm.querySelectorAll('[data-input-type=datepicker] input');
 
     $datepickers.forEach($input => {
-        const datepicker = new Datepicker($input, {
-            format: 'mm.dd.yyyy'
-        });
+        const datepicker = new Datepicker($input);
         $input.classList.add('c-date__input');
         $input.setAttribute('inputmode', 'none');
     });
