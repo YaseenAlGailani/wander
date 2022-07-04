@@ -83,18 +83,18 @@ app.post('/trip', (req, res) => {
         let data = JSON.parse(req.body);
 
         let index = database.trips.findIndex(item => item.id === data.id);
-        console.log('saving!');
+
 
         if (index >= 0) {
             let path = ['trips', index, ...data.path];
             storeData(database, path, data.value);
-            console.log(database);
+
 
         } else {
             database.trips.push({ id: data.id });
             let path = ['trips', database.trips.length - 1, ...data.path];
             storeData(database, path, data.value);
-            console.log(database);
+
         }
 
         res.send(JSON.stringify(database));
@@ -112,18 +112,18 @@ app.post('/destination', (req, res) => {
         let data = JSON.parse(req.body);
 
         let index = database.destinations.findIndex(item => item.id === data.id);
-        console.log('saving!');
+
 
         if (index >= 0) {
             let path = ['destinations', index, ...data.path];
             storeData(database, path, data.value);
-            console.log(database);
+
 
         } else {
             database.destinations.push({ id: data.id, parent_id: data.parent_id });
             let path = ['destinations', database.destinations.length - 1, ...data.path];
             storeData(database, path, data.value);
-            console.log(database);
+
         }
         res.send(JSON.stringify(database));
     }

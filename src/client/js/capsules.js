@@ -54,7 +54,6 @@ function handleInput() {
 
         if ($viewElement.innerText !== $inputElement.value) {
             saveData(this);
-            console.log('saving data!');
         }
 
         $viewElement.innerText = $inputElement.value;
@@ -62,7 +61,6 @@ function handleInput() {
     } else {
 
         if ($viewElement.innerText !== $viewElement.dataset.placeholder) {
-            console.log('removing data!');
             saveData(this);
         }
 

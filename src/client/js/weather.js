@@ -8,7 +8,7 @@ export default async function tryWeather($parent_realm) {
     let $widget = $parent_realm.querySelector('[data-widget=weather]');
 
     if ($location.value !== '' && $start_date.value !== '' && $end_date.value !== '') {
-        console.log('about to fetch coordinates')
+
         let coord = await getCoordinates($location.value);
 
         let today = new Date().getTime();
@@ -49,7 +49,7 @@ export default async function tryWeather($parent_realm) {
 
 async function getCurrentWeather(lat, lon) {
     try {
-        console.log('fetching current weather')
+
         let resp = await fetch(`http://localhost:3000/api/weather/current?lat=${lat}&lon=${lon}`);
         return (await resp.json());
 
@@ -69,7 +69,7 @@ function injectCurrentWeather($widget, weather) {
 
 async function getForecastWeather(lat, lon) {
     try {
-        console.log('fetching current weather')
+
         let resp = await fetch(`http://localhost:3000/api/weather/forecast?lat=${lat}&lon=${lon}`);
         return (await resp.json());
     }

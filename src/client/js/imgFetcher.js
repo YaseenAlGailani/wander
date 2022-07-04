@@ -1,6 +1,6 @@
 export default async function imgFetcher(location, $img) {
     try {
-        console.log(`fetching an image now for ${location}`);
+
         const resp = await fetch(`http://localhost:3000/api/images?loc=${encodeURIComponent(location)}`);
         if (resp.status >= 400) {
             let data_obj = await resp.json()

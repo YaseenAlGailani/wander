@@ -18,10 +18,9 @@ export default async function saveData($input) {
     }
 
 
-    console.log('[HEY] ', data)
+
 
     try {
-        console.log('I got here!');
         let resp = await fetch(`http://localhost:3000/${$realm.dataset.realm}`, {
             method: 'POST',
             body: JSON.stringify(data),
