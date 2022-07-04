@@ -63,6 +63,7 @@ function handleUserInput(e) {
 
         if ($viewElement.innerText !== $viewElement.dataset.placeholder) {
             console.log('removing data!');
+            saveData(e.target);
         }
 
         $viewElement.innerText = $viewElement.dataset.placeholder;

@@ -117,7 +117,7 @@
     @media (min-width:67em) {
         &__body {
             display: grid;
-            grid-template-columns: minmax(22.5rem, 24rem) minmax(37rem, 1fr);
+            grid-template-columns: minmax(22.5rem, 25rem) minmax(37rem, 1fr);
             gap: var(--large-spacing);
         }
 

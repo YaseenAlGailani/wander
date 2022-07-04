@@ -62,7 +62,6 @@ app.get('/api/coord', (req, res) => {
 app.get('/api/weather/current', (req, res) => {
     axios.get(`https://api.weatherbit.io/v2.0/current?lat=${req.query.lat}&lon=${req.query.lon}&key=${process.env.WEATHER_KEY}`)
         .then(resp => {
-            console.log(resp.data);
             res.send(resp.data);
         }).catch(error => {
             console.log(error)
@@ -81,8 +80,6 @@ app.get('/api/weather/forecast', (req, res) => {
 
 app.post('/trip', (req, res) => {
     try {
-        //check trip id to see if it exists
-
         let data = JSON.parse(req.body);
 
         let index = database.trips.findIndex(item => item.id === data.id);
@@ -100,6 +97,7 @@ app.post('/trip', (req, res) => {
             console.log(database);
         }
 
+        res.send(JSON.stringify(database));
     }
     catch (error) {
         console.log(error);
@@ -109,8 +107,25 @@ app.post('/trip', (req, res) => {
 })
 
 app.post('/destination', (req, res) => {
+
     try {
-        console.log('saving!', req.body);
+        let data = JSON.parse(req.body);
+
+        let index = database.destinations.findIndex(item => item.id === data.id);
+        console.log('saving!');
+
+        if (index >= 0) {
+            let path = ['destinations', index, ...data.path];
+            storeData(database, path, data.value);
+            console.log(database);
+
+        } else {
+            database.destinations.push({ id: data.id, parent_id: data.parent_id });
+            let path = ['destinations', database.destinations.length - 1, ...data.path];
+            storeData(database, path, data.value);
+            console.log(database);
+        }
+        res.send(JSON.stringify(database));
     }
     catch (error) {
         console.log(error);
@@ -125,7 +140,7 @@ app.listen(port, () => {
 
 
 function storeData(db, path, value) {
-    let destination = path.reduce((cumm, curr, index) => {
+    path.reduce((cumm, curr, index) => {
         if (typeof cumm[curr] == 'undefined' && index < path.length - 1) {
             cumm[curr] = {};
             return cumm[curr];
