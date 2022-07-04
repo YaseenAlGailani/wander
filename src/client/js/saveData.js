@@ -2,14 +2,8 @@ export default async function saveData($input) {
     let value = $input.value;
     let $realm = $input.closest('[data-realm]');
     let id = $realm.id;
-    let path = [];
-    let $widget = $input.closest('[data-widget]');
+    let path = ['values'];
 
-
-
-    if ($widget) {
-        path.push($widget.dataset.widget)
-    }
 
     path.push($input.name)
 

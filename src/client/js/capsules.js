@@ -24,7 +24,7 @@ export default function initCapsules($parent_realm) {
         $inputElement.dataset.block = 'capsule-input';
         $inputElement.classList.add('c-capsule__input');
 
-        $inputElement.addEventListener('blur', handleUserInput);
+        $inputElement.addEventListener('blur', handleInput);
 
 
         //setup inputLabel
@@ -45,15 +45,15 @@ export default function initCapsules($parent_realm) {
     });
 }
 
-function handleUserInput(e) {
-    let $inputElement = e.target;
+function handleInput() {
+    let $inputElement = this;
     let $inputGroup = $inputElement.parentElement;
     let $viewElement = $inputElement.closest('[data-block=capsule').querySelector('[data-block=capsule-view]');
 
     if ($inputElement.value) {
 
         if ($viewElement.innerText !== $inputElement.value) {
-            saveData(e.target);
+            saveData(this);
             console.log('saving data!');
         }
 
@@ -63,7 +63,7 @@ function handleUserInput(e) {
 
         if ($viewElement.innerText !== $viewElement.dataset.placeholder) {
             console.log('removing data!');
-            saveData(e.target);
+            saveData(this);
         }
 
         $viewElement.innerText = $viewElement.dataset.placeholder;

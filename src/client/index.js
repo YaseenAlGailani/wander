@@ -16,21 +16,31 @@ window.addEventListener('DOMContentLoaded', () => {
     // get object from local storage
     let database = JSON.parse(localStorage.getItem('wander_db'));
 
-    if(database){
+    if (database) {
         database.trips.forEach(trip => {
             let $new_trip = addTrip(null, trip.id);
-      
-            
+            populateRealm($new_trip, trip.values);
+
         });
         database.destinations.forEach(destination => {
             let $parent_trip = document.getElementById(destination.parent_id)
-            addDestination($parent_trip, destination.id);
+            let $new_destination = addDestination($parent_trip, destination.id);
+            populateRealm($new_destination, destination.values);
         });
     }
 
 });
 
-
+function populateRealm($new_realm, data) {
+    for (let value in data) {
+        let $input = $new_realm.querySelector(`input[name=${value}]`);
+        $input.value = data[value];
+        $input.dispatchEvent(new Event('changeDate'));
+        $input.dispatchEvent(new Event('blur'));
+        $input.dispatchEvent(new Event('change'));
+        console.log('[POPULATE]', $input.name, $input.value);
+    }
+}
 
 function addTrip(e, saved_id) {
     let $trip = document.createElement('article');
@@ -50,15 +60,15 @@ function addTrip(e, saved_id) {
     let $new_destination = $trip.querySelector('[data-block=new-destination]');
     $new_destination.addEventListener('click', newDestination);
 
+    return $trip;
 }
-
 
 function newDestination(e) {
     let $parent_trip = e.target.closest('[data-realm=trip]');
     addDestination($parent_trip);
 }
 
-function addDestination($parent_trip, saved_id){
+function addDestination($parent_trip, saved_id) {
     let $destination = document.createElement('article');
     $destination.classList.add('c-destination');
     $destination.setAttribute('data-realm', 'destination');
@@ -73,4 +83,6 @@ function addDestination($parent_trip, saved_id){
     initLocation($destination);
 
     $parent_trip.querySelector('#destinations_list').append($destination);
+
+    return $destination;
 }

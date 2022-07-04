@@ -153,9 +153,3 @@ function storeData(db, path, value) {
         return cumm[curr];
     }, db)
 }
-
-function getData(db, path) {
-    return path.reduce((cum, curr) => {
-        return cum[curr];
-    }, db);
-}
