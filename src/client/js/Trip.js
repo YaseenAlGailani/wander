@@ -74,18 +74,6 @@ Delete trip
 </span>
 </button>
 </li>
-<li class="c-controls__item">
-<button class="c-controls__btn">
-<span class="c-btn__icon">
-<svg data-name="icon-printer" xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="#333">
-<path d="M17,7H16V1a1.075,1.075,0,0,0-1-1H5A1.075,1.075,0,0,0,4,1V7H3a2.946,2.946,0,0,0-3,3v4a2.946,2.946,0,0,0,3,3H4v1a1.075,1.075,0,0,0,1,1H15a1.075,1.075,0,0,0,1-1V17h1a2.946,2.946,0,0,0,3-3V10A2.946,2.946,0,0,0,17,7ZM6,2h8V7H6Zm8,15H6V13h8Zm4-3a1.075,1.075,0,0,1-1,1H16V12a1.075,1.075,0,0,0-1-1H5a1.075,1.075,0,0,0-1,1v3H3a1.075,1.075,0,0,1-1-1V10A1.075,1.075,0,0,1,3,9H17a1.075,1.075,0,0,1,1,1Z" />
-</svg>
-</span>
-<span class="c-controls__text">
-Print trip
-</span>
-</button>
-</li>
 </ul>
 <button data-controls="close" class="c-controls__close">
 <span class="c-controls__icon">

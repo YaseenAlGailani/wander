@@ -161,8 +161,7 @@ app.listen(port, () => {
     console.log(`Server is listening on port ${port}`)
 })
 
-
-export function storeData(db, path, value) {
+function storeData(db, path, value) {
     path.reduce((cumm, curr, index) => {
         if (typeof cumm[curr] == 'undefined' && index < path.length - 1) {
             cumm[curr] = {};
@@ -175,3 +174,5 @@ export function storeData(db, path, value) {
         return cumm[curr];
     }, db)
 }
+
+module.exports = storeData;

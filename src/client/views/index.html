@@ -31,10 +31,19 @@
                 </button>
             </div>
             <div id="trips_list" class="section__body">
-
+                <div data-block="placeholder-trip" class="c-trip__placeholder">
+                    <p>Hi there, click "+ New trip" to start planning!</p>
+                </div>
             </div>
         </section>
     </main>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js');
+            })
+        }
+    </script>
 </body>
 
 </html>

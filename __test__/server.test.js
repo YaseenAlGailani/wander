@@ -1,4 +1,4 @@
-import { storeData } from "../src/server/server";
+let storeData = require("../src/server/server");
 
 describe("Tesing data storage data path", () => {
 

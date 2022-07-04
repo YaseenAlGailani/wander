@@ -43,6 +43,7 @@ export default function app(){
     }
 
     function addTrip(e, saved_id) {
+        document.querySelector('[data-block=placeholder-trip]').classList.add('h-hidden');
         let $trip = document.createElement('article');
         $trip.classList.add('c-trip');
         $trip.setAttribute('data-realm', 'trip');

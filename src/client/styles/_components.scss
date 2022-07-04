@@ -29,6 +29,13 @@
         font-weight: 400;
     }
 
+    &__placeholder{
+        text-align: center;
+        border:solid 1px var(--borders-grey);
+        border-radius:8px;
+        padding: var(--xlarge-spacing);
+    }
+
     &__info {
         grid-area: info;
     }
@@ -170,10 +177,10 @@
 
     &__image {
         grid-area: image;
-        max-width: 100%;
         height: auto;
         border-radius: 8px;
-        justify-self: center;
+        max-width: 100%;
+        max-height: 250px;
     }
 
     &__title {
