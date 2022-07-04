@@ -88,7 +88,7 @@ function handleTimeInput(e) {
     if (allowed_keys.indexOf(e.key) >= 0 || Number(e.key) >= 0) {
         if (this.value.length == 0 && e.key > 2) {
             e.preventDefault();
-        } else if (this.value.length == 1 && e.key > 3) {
+        } else if (this.value.length == 1 && e.key > 9) {
             e.preventDefault();
         } else if (this.value.length === 2 && Number(e.key) >= 0) {
             this.value = this.value + ':';
