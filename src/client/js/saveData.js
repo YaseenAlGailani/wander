@@ -31,10 +31,15 @@ export default async function saveData($input) {
         let database = await resp.json();
 
         //save to localstorage
-        localStorage.setItem('wander_db', JSON.stringify(database));
+        saveToLocalStorage(database);
+        
     }
     catch (error) {
         console.error(new Error(error));
     }
 
+}
+
+export function saveToLocalStorage(database){
+    localStorage.setItem('wander_db', JSON.stringify(database));
 }

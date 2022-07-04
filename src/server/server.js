@@ -86,13 +86,13 @@ app.post('/trip', (req, res) => {
         console.log('saving!');
 
         if (index >= 0) {
-            let path = ['trips',index, ...data.path];
+            let path = ['trips', index, ...data.path];
             storeData(database, path, data.value);
             console.log(database);
-            
-        } else{
-            database.trips.push({id:data.id});
-            let path = ['trips', database.trips.length-1, ...data.path];
+
+        } else {
+            database.trips.push({ id: data.id });
+            let path = ['trips', database.trips.length - 1, ...data.path];
             storeData(database, path, data.value);
             console.log(database);
         }
@@ -131,6 +131,29 @@ app.post('/destination', (req, res) => {
         console.log(error);
     }
 
+})
+
+app.post('/trip/delete', (req, res) => {
+    try {
+        let data = JSON.parse(req.body);
+        let index = database.trips.findIndex(item => item.id === data.id);
+        database.trips.splice(index, 1);
+        res.send(JSON.stringify(database))
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+app.post('/destination/delete', (req, res) => {
+    try {
+        let data = JSON.parse(req.body);
+        let index = database.destinations.findIndex(item => item.id === data.id);
+        database.destinations.splice(index, 1);
+        res.send(JSON.stringify(database))
+
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 

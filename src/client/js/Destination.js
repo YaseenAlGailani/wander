@@ -52,7 +52,7 @@ Toggle Destination
 </button>
 </li>
 <li class="c-controls__item">
-<button class="c-controls__btn">
+<button data-controls="delete" class="c-controls__btn">
 <span class="c-controls__icon">
 <svg data-name="btn-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="#333">
 <path d="M19,4H15V3a2.946,2.946,0,0,0-3-3H8A2.946,2.946,0,0,0,5,3V4H1A1,1,0,0,0,1,6H2V19a2.946,2.946,0,0,0,3,3H15a2.946,2.946,0,0,0,3-3V6h1a1,1,0,0,0,0-2ZM7,3A1.075,1.075,0,0,1,8,2h4a1.075,1.075,0,0,1,1,1V4H7Zm9,16a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V6H16Z" />

@@ -6,7 +6,7 @@
     border: solid 1px var(--borders-grey);
     border-radius: 16px;
     padding: var(--medium-spacing) var(--small-spacing);
-    margin-bottom:var(--xlarge-spacing);
+    margin-bottom: var(--xlarge-spacing);
 
     &__header {
         display: grid;
@@ -138,7 +138,7 @@
     border: solid 1px var(--borders-grey);
     border-radius: 8px;
     padding: var(--small-spacing);
-    margin-bottom:var(--large-spacing);
+    margin-bottom: var(--large-spacing);
 
     &__header {
         display: grid;
@@ -219,7 +219,8 @@
     font-size: var(--small-font);
     font-weight: 500;
     line-height: 1;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+    border 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     &__icon {
         display: inline-flex;
@@ -230,10 +231,7 @@
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    &:hover,
-    &:focus {
-        opacity: 0.9;
-    }
+
 
     &:hover &,
     &:focus & {
@@ -249,12 +247,23 @@
         & svg {
             fill: #fff;
         }
+
+        &:hover,
+        &:focus {
+            opacity: 0.9;
+        }
     }
 
     &--secondary {
         background-color: transparent;
         border: solid 1px var(--borders-grey);
-        border-radius:8px
+        border-radius: 8px;
+
+        &:hover,
+        &:focus {
+            border-color:var(--dark-grey);
+            background-color: #f9f9f9;
+        }
     }
 
     &--round {
@@ -416,9 +425,15 @@
             border-radius: 50%;
         }
 
-        &--rotated{
-            transform:rotate(180deg);
+        &--rotated {
+            transform: rotate(180deg);
             transform-origin: center;
+        }
+
+        &:hover, 
+        &:focus{
+            border-color:var(--dark-grey);
+            
         }
     }
 
@@ -591,13 +606,13 @@
 }
 
 .c-widget {
-        border-bottom: solid 1px var(--borders-grey);
-        padding-bottom: var(--xlarge-spacing);
+    border-bottom: solid 1px var(--borders-grey);
+    padding-bottom: var(--xlarge-spacing);
 
-        &:last-of-type{
-            border:none;
-            padding-bottom:0;
-        }
+    &:last-of-type {
+        border: none;
+        padding-bottom: 0;
+    }
 
     &__header {
         display: grid;

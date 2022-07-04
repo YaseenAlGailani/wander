@@ -1,7 +1,10 @@
+import { saveToLocalStorage } from "./saveData";
+
 export default function initControls($parent_realm) {
     let $controls_close = $parent_realm.querySelectorAll('[data-controls=close]');
     let $controls_show = $parent_realm.querySelectorAll('[data-controls=show]');
     let $controls_toggle = $parent_realm.querySelectorAll('[data-controls=toggle]');
+    let $controls_delete = $parent_realm.querySelectorAll('[data-controls=delete]');
 
     $controls_show.forEach((button) => {
         let $controls = button.closest('[data-block=controls]');
@@ -40,4 +43,31 @@ export default function initControls($parent_realm) {
             button.classList.toggle('c-controls__btn--rotated');
         });
     });
+
+
+    $controls_delete.forEach((button) => {
+        let $toggle_parent = button.closest('[data-control=parent');
+        let id = $toggle_parent.id;
+        let parent_realm = $toggle_parent.dataset.realm;
+
+        button.addEventListener('click', async () => {
+            $toggle_parent.remove();
+            try {
+                let resp = await fetch(`http://localhost:3000/${parent_realm}/delete`, {
+                    method: 'POST',
+                    body: JSON.stringify({ id }),
+                    credentials: 'same-origin',
+                });
+
+                let database = await resp.json();
+
+                saveToLocalStorage(database);
+
+            } catch (error) {
+                console.log(new Error(error));
+            }
+        });
+    });
+
+
 }
