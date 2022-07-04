@@ -38,7 +38,6 @@ export default function app(){
             $input.dispatchEvent(new Event('changeDate'));
             $input.dispatchEvent(new Event('blur'));
             $input.dispatchEvent(new Event('change'));
-            console.log('[POPULATE]', $input.name, $input.value);
         }
     }
 
