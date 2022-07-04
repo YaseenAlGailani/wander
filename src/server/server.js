@@ -162,7 +162,7 @@ app.listen(port, () => {
 })
 
 
-function storeData(db, path, value) {
+export function storeData(db, path, value) {
     path.reduce((cumm, curr, index) => {
         if (typeof cumm[curr] == 'undefined' && index < path.length - 1) {
             cumm[curr] = {};
@@ -172,7 +172,6 @@ function storeData(db, path, value) {
         if (index === path.length - 1) {
             cumm[curr] = value;
         }
-
         return cumm[curr];
     }, db)
 }
