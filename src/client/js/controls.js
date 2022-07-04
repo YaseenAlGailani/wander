@@ -46,12 +46,12 @@ export default function initControls($parent_realm) {
 
 
     $controls_delete.forEach((button) => {
-        let $toggle_parent = button.closest('[data-control=parent');
-        let id = $toggle_parent.id;
-        let parent_realm = $toggle_parent.dataset.realm;
+        let $control_parent = button.closest('[data-control=parent');
+        let id = $control_parent.id;
+        let parent_realm = $control_parent.dataset.realm;
 
         button.addEventListener('click', async () => {
-            $toggle_parent.remove();
+            $control_parent.remove();
             try {
                 let resp = await fetch(`http://localhost:3000/${parent_realm}/delete`, {
                     method: 'POST',

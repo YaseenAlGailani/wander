@@ -136,14 +136,20 @@ app.post('/destination', (req, res) => {
 app.post('/trip/delete', (req, res) => {
     try {
         let data = JSON.parse(req.body);
-        let index = database.trips.findIndex(item => item.id === data.id);
-        database.trips.splice(index, 1);
-        res.send(JSON.stringify(database))
+        let trip_index = database.trips.findIndex(item => item.id === data.id);
+        database.trips.splice(trip_index, 1);
+
+        let destinations = database.destinations.filter(item => item.parent_id !== data.id );
+
+        database.destinations = destinations;
+
+        res.send(JSON.stringify(database));
 
     } catch (error) {
         console.log(error);
     }
 })
+
 app.post('/destination/delete', (req, res) => {
     try {
         let data = JSON.parse(req.body);
