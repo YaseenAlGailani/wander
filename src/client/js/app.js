@@ -6,9 +6,10 @@ import Destination from './Destination'
 import Trip from './Trip'
 import { v4 as uuid } from 'uuid'
 
-export default function app(){
+export default function app() {
 
     window.addEventListener('DOMContentLoaded', () => {
+
 
         let $new_trip = document.getElementById('new-trip');
         $new_trip.addEventListener('click', addTrip);
@@ -16,6 +17,7 @@ export default function app(){
         // get object from local storage
         let database = JSON.parse(localStorage.getItem('wander_db'));
 
+        // Populate saved user trips and destinations if it is found in the local storage.
         if (database) {
             database.trips.forEach(trip => {
                 let $new_trip = addTrip(null, trip.id);
@@ -31,6 +33,12 @@ export default function app(){
 
     });
 
+    /**
+     * traverses through and populates all inputs from values in the passed data object.
+     * 
+     * @param {node} $new_realm 
+     * @param {object} data 
+     */
     function populateRealm($new_realm, data) {
         for (let value in data) {
             let $input = $new_realm.querySelector(`input[name=${value}]`);
@@ -41,6 +49,14 @@ export default function app(){
         }
     }
 
+
+    /**
+     * Retruns and initiates a new trip node.
+     * 
+     * @param {event object} e 
+     * @param {string} saved_id 
+     * @returns new trip node
+     */
     function addTrip(e, saved_id) {
         document.querySelector('[data-block=placeholder-trip]').classList.add('h-hidden');
         let $trip = document.createElement('article');
@@ -63,11 +79,24 @@ export default function app(){
         return $trip;
     }
 
+    /**
+     * specifies a parent node to which a new destination is attached.
+     * 
+     * @param {event object} e 
+     */
+
     function newDestination(e) {
         let $parent_trip = e.target.closest('[data-realm=trip]');
         addDestination($parent_trip);
     }
 
+    /**
+     * creates a new destination node .
+     * 
+     * @param {node} $parent_trip 
+     * @param {string} saved_id 
+     * @returns new destination node.
+     */
     function addDestination($parent_trip, saved_id) {
         let $destination = document.createElement('article');
         $destination.classList.add('c-destination');

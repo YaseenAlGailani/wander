@@ -1,6 +1,11 @@
 import { v4 as uuid } from 'uuid'
 import saveData from './saveData';
 
+/**
+ * initiates all view/input blocks referred to as 'capsules' inside a parent trip or destination.
+ * 
+ * @param {node} $parent_realm 
+ */
 export default function initCapsules($parent_realm) {
 
     let $capsules = $parent_realm.querySelectorAll('[data-block=capsule]');
@@ -45,6 +50,8 @@ export default function initCapsules($parent_realm) {
     });
 }
 
+
+//Handles input data display in view elements and saves data.
 function handleInput() {
     let $inputElement = this;
     let $inputGroup = $inputElement.parentElement;
@@ -74,6 +81,11 @@ function handleInput() {
 
 }
 
+/**
+ * displays the connected input element to the target view element.
+ * 
+ * @param {event object} e 
+ */
 function editModeOn(e) {
     let $viewElement = e.target;
     let $inputElement = $viewElement.closest('[data-block=capsule]').querySelector('[data-block=capsule-input]');

@@ -1,5 +1,11 @@
 import { saveToLocalStorage } from "./saveData";
 
+
+/**
+ * initialises the control buttons "close, delete, show and toggle" in the passed trip or destination.
+ * 
+ * @param {node} $parent_realm 
+ */
 export default function initControls($parent_realm) {
     let $controls_close = $parent_realm.querySelectorAll('[data-controls=close]');
     let $controls_show = $parent_realm.querySelectorAll('[data-controls=show]');

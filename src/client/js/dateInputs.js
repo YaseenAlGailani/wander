@@ -4,6 +4,12 @@ import '../../../node_modules/vanillajs-datepicker/sass/datepicker.scss'
 import * as utils from './date_utils'
 import saveData from './saveData';
 
+
+/**
+ * initialises datepickers and date range inputs for the passed trip or destination (uses vanillajs datapicker library).
+ * 
+ * @param {node} $parent_realm 
+ */
 function initDateRange($parent_realm) {
 
     let $date_ranges = $parent_realm.querySelectorAll('[data-block=date-range]');
@@ -29,6 +35,10 @@ function initDateRange($parent_realm) {
         $start_date.classList.add('c-date__input');
         $end_date.classList.add('c-date__input');
 
+        /**
+         * calls weather fetching and calculates.
+         * calculates days long and days away if the dom nodes exist in the passed trip or destination.
+         */ 
         function handleDateChange() {
             let $viewElement = this.closest('[data-block=capsule]').querySelector('[data-block=capsule-view]');
             saveData(this);
@@ -79,6 +89,11 @@ function initTimeInput($parent_realm) {
     });
 }
 
+/**
+ * Ensures input format of HH:MM.
+ * 
+ * @param {event object} e 
+ */
 function handleTimeInput(e) {
     let allowed_keys = ['ArrowLeft', 'ArrowRight', 'Enter', 'Backspace', 'Decimal', 'Tab', ':', '0'];
 

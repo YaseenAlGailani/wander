@@ -77,7 +77,7 @@ app.get('/api/weather/forecast', (req, res) => {
         })
 })
 
-
+//saves trip data.
 app.post('/trip', (req, res) => {
     try {
         let data = JSON.parse(req.body);
@@ -106,6 +106,7 @@ app.post('/trip', (req, res) => {
 
 })
 
+// saves desitination data.
 app.post('/destination', (req, res) => {
 
     try {
@@ -167,8 +168,17 @@ app.listen(port, () => {
     console.log(`Server is listening on port ${port}`)
 })
 
+/**
+ * Reduces path array into a chained object-properties assignment.
+ * 
+ * @param {object} db 
+ * @param {array} path 
+ * @param {string} value 
+ */
 function storeData(db, path, value) {
     path.reduce((cumm, curr, index) => {
+
+        //create new property if it doesn't yet exist.
         if (typeof cumm[curr] == 'undefined' && index < path.length - 1) {
             cumm[curr] = {};
             return cumm[curr];

@@ -17,9 +17,7 @@ export default async function saveData($input) {
         data.parent_id = parent_id;
     }
 
-
-
-
+    // save data to server.
     try {
         let resp = await fetch(`http://localhost:3000/${$realm.dataset.realm}`, {
             method: 'POST',
@@ -29,7 +27,7 @@ export default async function saveData($input) {
 
         let database = await resp.json();
 
-        //save to localstorage
+        //save to localstorage.
         saveToLocalStorage(database);
         
     }

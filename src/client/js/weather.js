@@ -1,6 +1,13 @@
 import * as date from './date_utils'
 import getCoordinates from './coordinates'
 
+/**
+ * Checks if location, start and end date values are entered in the passed trip or destination.
+ * Calls current weather and forecast weather fetching.
+ * Injects data into the DOM.
+ * 
+ * @param {node} $parent_realm 
+ */
 export default async function tryWeather($parent_realm) {
     let $location = $parent_realm.querySelector('input[name=location]');
     let $start_date = $parent_realm.querySelector('input[name=start_date]');
@@ -10,24 +17,22 @@ export default async function tryWeather($parent_realm) {
     if ($location.value !== '' && $start_date.value !== '' && $end_date.value !== '') {
 
         let coord = await getCoordinates($location.value);
-
         let today = new Date().getTime();
         let days_to_start = date.calculateDays(today, $start_date.value);
         let days_to_end = date.calculateDays(today, $end_date.value);
 
         if (days_to_start > 16 || days_to_end < 0) {
-
             $widget.classList.add('h-hidden');
 
-
         } else if (days_to_start < 16) {
-
             let current_weather = await getCurrentWeather(coord.lat, coord.lon);
             injectCurrentWeather($parent_realm, current_weather);
-            let forecast_weather = await getForecastWeather(coord.lat, coord.lon);
-            let forecast_array = []
 
+            let forecast_weather = await getForecastWeather(coord.lat, coord.lon);
             $widget.classList.remove('h-hidden');
+
+            let forecast_array = []
+            
             if (days_to_start > 0) {
                 if (days_to_end >= 7) {
                     forecast_array = forecast_weather.data.slice(days_to_start + 1, days_to_start + 8);
